@@ -15,8 +15,6 @@ function draw() {
     drawingContext.shadowColor = sdColor;
     if (100 > IsMousePressed > 0) {
       ++IsMousePressed;
-    } else {
-      IsMousePressed = 10;
     }
   } else {
     sdColor = "black";
