@@ -4,7 +4,7 @@ let fr = 30;
 
 function preload() {
   soundFormats("mp3");
-  mySound = loadSound("../day_4/Sunny Travel - Nico Staf.mp3");
+  mySound = loadSound("Meet & Fun! - Ofshane.mp3");
 }
 
 function setup() {
@@ -26,18 +26,24 @@ function draw() {
 
   let level = amplitude.getLevel();
   let mappedLevel = map(level, 0, 1, 10, 50);
-  let rotateRate = map(level, 0, 1, 0.01, 0.015);
-  let boxDistance = map(level, 0, 1, 1, 5);
+  let rotateRate = map(level, 0, 1, 0.01, 0.011);
+  let boxDistance = map(level, 0, 1, 1, 3);
+  let boxTranslate = map(level, 0, 1, 1, 3);
+  let boxOpacity = map(level, 0, 1, 100, 255);
 
   push();
   translate(-width / 2, -height / 2, -500);
   noStroke();
   for (let i = 0; i < 30; i++) {
     let mappedColor = map(i, 0, 29, 0, 255);
-    fill(mappedColor / 3, mappedColor, mappedColor);
-    ellipse(width / 2, height / 2, 2000 / i);
+    fill(mappedColor / 3, 10, mappedColor / boxDistance);
+    ellipse(width / 2, height / 2, (boxDistance * 5000) / i);
   }
   pop();
+
+  ambientLight(50);
+  directionalLight(0, 150, 255, 0, 0, 500);
+  pointLight(11, 150, 35, width, height, 0);
 
   let rotateSpeed = frameCount * rotateRate;
   rotateZ(rotateSpeed);
@@ -48,12 +54,13 @@ function draw() {
   stroke(255);
 
   push();
-  translate(-150 * boxDistance, -150 * boxDistance, -150 * boxDistance);
-  for (let i = 0; i < 301; i = i + 50) {
-    for (let j = 0; j < 301; j = j + 50) {
-      for (let k = 0; k < 301; k = k + 50) {
+  translate(-150 * boxTranslate, -150 * boxTranslate, -150 * boxTranslate);
+  for (let i = 0; i < 301; i = i + (50 * boxDistance) / 2) {
+    for (let j = 0; j < 301; j = j + (50 * boxDistance) / 2) {
+      for (let k = 0; k < 301; k = k + (50 * boxDistance) / 2) {
         push();
-        translate(i * boxDistance, j * boxDistance, k * boxDistance);
+        translate(i * boxTranslate, j * boxTranslate, k * boxTranslate);
+        specularMaterial(255, boxOpacity);
         box(mappedLevel);
         pop();
       }
