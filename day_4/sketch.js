@@ -25,7 +25,7 @@ function draw() {
   ellipse(width / 2, height / 2, mappedSizeOne);
   for (let i = 0; i < 30; i++) {
     let mappedColor = map(i, 0, 29, 0, 255);
-    fill(mappedColor / 3, mappedColor, 0);
+    fill(mappedColor / 3, mappedColor, mappedSizeTwo);
     ellipse(width / 2, height / 2, mappedSizeOne / i);
   }
 }
