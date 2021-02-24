@@ -1,4 +1,7 @@
-let line;
+//마우스가 움직였는지 체크해서 움직였으면 마우스의 가운데부터 원을 중첩해서 그려나감.
+
+let radiusC,
+  cicleWidth = 0;
 
 function setup() {
   let canvasOne = createCanvas(windowWidth, windowHeight);
@@ -16,15 +19,10 @@ function draw() {
   stroke(0);
   strokeWeight(4);
   fill(255);
-  if ((line === undefined) | (line < 0)) {
-    line = width * 2;
-    if (line > 0) {
-      line = line - 30;
-    }
-  } else {
-    if (line > 0) {
-      line = line - 30;
-    }
+  if (radiusC === undefined) {
+    radiusC = width * 2;
   }
-  circle(mouseX, mouseY, line);
+  for (i = 0; i < radiusC; i = i + 40) {
+    circle(mouseX, mouseY, i);
+  }
 }
