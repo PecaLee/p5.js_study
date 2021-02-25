@@ -19,7 +19,7 @@ function windowResized() {
 function draw() {
   stroke(0);
   strokeWeight(4);
-  fill(255);
+
   if (radiusC === undefined) {
     radiusC = width * 2;
   }
@@ -28,19 +28,22 @@ function draw() {
       circle(mouseX, mouseY, j);
     }
   }*/
-  if (cicleWidth < radiusC) {
-    cicleWidth = cicleWidth + 40;
-    if (cicleWidth > 0) {
-      cicleWidthT = cicleWidth;
-      for (j = cicleWidthT; j > 0; j = j - 40) {
-        circle(mouseX, mouseY, j);
-      }
-      /** 
+  if (pmouseX - mouseX !== 0) {
+    if (cicleWidth < radiusC) {
+      cicleWidth = cicleWidth + 40;
+      if (cicleWidth > 0) {
+        cicleWidthT = cicleWidth;
+        for (j = cicleWidthT; j > 0; j = j - 40) {
+          fill(random(150, 255), 0, 200);
+          circle(mouseX, mouseY, j);
+        }
+        /** 
       cicleWidthT = cicleWidthT - 40;
       circle(mouseX, mouseY, cicleWidth);
       */
+      }
+    } else {
+      cicleWidth = 0;
     }
-  } else {
-    cicleWidth = 0;
   }
 }
