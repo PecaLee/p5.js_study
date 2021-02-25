@@ -17,8 +17,7 @@ function windowResized() {
 }
 
 function draw() {
-  stroke(0);
-  strokeWeight(4);
+  noStroke();
 
   if (radiusC === undefined) {
     radiusC = width * 2;
