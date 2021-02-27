@@ -17,7 +17,8 @@ function windowResized() {
 }
 
 function draw() {
-  noStroke();
+  stroke(0);
+  fill(255);
 
   if (radiusC === undefined) {
     radiusC = width * 2;
@@ -33,7 +34,8 @@ function draw() {
       if (cicleWidth > 0) {
         cicleWidthT = cicleWidth;
         for (j = cicleWidthT; j > 0; j = j - 40) {
-          fill(random(150, 255), 0, 200);
+          let mapJ = map(j, 0, cicleWidthT, 0, 255);
+          fill(mapJ);
           circle(mouseX, mouseY, j);
         }
         /** 
@@ -44,5 +46,7 @@ function draw() {
     } else {
       cicleWidth = 0;
     }
+  } else {
+    cicleWidth = 0;
   }
 }
